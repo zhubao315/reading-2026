@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>在奇点与道之间寻找锚点 — 2026年度阅读收获</title>
+<meta name="description" content="24本书横跨TESCREAL技术乌托邦、东方古典智慧、商业投资哲学、认知科学四大板块的深度阅读收获">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700;900&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#0a0a0a;--bg-card:#141414;--bg-quote:#1a1a1a;
+  --text:#e8e0d4;--text-muted:#9a9088;--text-dim:#6b6360;
+  --accent:#c8a45c;--accent-light:#e8c97c;--accent-dark:#a07830;
+  --serif:'Noto Serif SC','Playfair Display',Georgia,serif;
+  --sans:'Inter',-apple-system,sans-serif;
+  --display:'Playfair Display','Noto Serif SC',serif;
+}
+html{scroll-behavior:smooth;font-size:16px}
+body{
+  font-family:var(--serif);color:var(--text);background:var(--bg);
+  line-height:1.9;-webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+::selection{background:var(--accent);color:var(--bg)}
+a{color:var(--accent);text-decoration:none;transition:.3s}
+a:hover{color:var(--accent-light)}
+
+/* ===== HERO ===== */
+.hero{
+  min-height:100vh;display:flex;flex-direction:column;
+  justify-content:center;align-items:center;text-align:center;
+  position:relative;padding:2rem;
+  background:
+    radial-gradient(ellipse 80% 50% at 50% 0%,rgba(200,164,92,.08),transparent),
+    radial-gradient(ellipse 60% 40% at 20% 80%,rgba(200,164,92,.04),transparent),
+    var(--bg);
+}
+.hero::before{
+  content:'';position:absolute;inset:0;
+  background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23c8a45c' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  opacity:.5;pointer-events:none;
+}
+.hero-eyebrow{
+  font-family:var(--sans);font-size:.75rem;letter-spacing:.4em;
+  text-transform:uppercase;color:var(--accent);margin-bottom:2rem;
+  opacity:0;animation:fadeUp .8s .3s forwards;
+}
+.hero h1{
+  font-family:var(--display);font-size:clamp(2.2rem,6vw,4.5rem);
+  font-weight:900;line-height:1.15;max-width:900px;
+  color:var(--text);margin-bottom:1.5rem;
+  opacity:0;animation:fadeUp .8s .5s forwards;
+}
+.hero h1 em{font-style:italic;color:var(--accent)}
+.hero-sub{
+  font-family:var(--serif);font-size:clamp(1rem,2.5vw,1.35rem);
+  color:var(--text-muted);max-width:640px;line-height:1.8;
+  opacity:0;animation:fadeUp .8s .7s forwards;
+}
+.hero-stats{
+  display:flex;gap:3rem;margin-top:3rem;
+  opacity:0;animation:fadeUp .8s .9s forwards;
+}
+.hero-stat{text-align:center}
+.hero-stat-num{
+  font-family:var(--display);font-size:2.8rem;font-weight:700;
+  color:var(--accent);display:block;line-height:1;
+}
+.hero-stat-label{
+  font-family:var(--sans);font-size:.7rem;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--text-dim);margin-top:.4rem;
+}
+.scroll-hint{
+  position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);
+  opacity:0;animation:fadeUp .8s 1.2s forwards;
+}
+.scroll-hint span{
+  display:block;width:1px;height:40px;background:linear-gradient(var(--accent),transparent);
+  margin:0 auto .5rem;animation:scrollPulse 2s infinite;
+}
+.scroll-hint small{
+  font-family:var(--sans);font-size:.6rem;letter-spacing:.3em;
+  text-transform:uppercase;color:var(--text-dim);
+}
+
+/* ===== LAYOUT ===== */
+.container{max-width:800px;margin:0 auto;padding:0 2rem}
+.wide-container{max-width:1200px;margin:0 auto;padding:0 2rem}
+
+/* ===== SECTION HEADERS ===== */
+.section-header{
+  text-align:center;padding:6rem 0 3rem;
+}
+.section-header .eyebrow{
+  font-family:var(--sans);font-size:.65rem;letter-spacing:.5em;
+  text-transform:uppercase;color:var(--accent);margin-bottom:1rem;
+}
+.section-header h2{
+  font-family:var(--display);font-size:clamp(1.8rem,4vw,3rem);
+  font-weight:700;line-height:1.2;
+}
+.section-header p{
+  font-size:1.05rem;color:var(--text-muted);margin-top:1rem;max-width:600px;margin-left:auto;margin-right:auto;
+}
+
+/* ===== INTRO TEXT ===== */
+.intro-text{
+  padding:4rem 0 2rem;font-size:1.15rem;line-height:2;
+  color:var(--text-muted);text-align:center;max-width:700px;margin:0 auto;
+}
+.intro-text .highlight{color:var(--accent);font-weight:600}
+
+/* ===== INSIGHT CARDS ===== */
+.insights{padding:2rem 0 4rem}
+.insight-card{
+  background:var(--bg-card);border:1px solid rgba(200,164,92,.1);
+  border-radius:16px;padding:3rem;margin-bottom:2rem;
+  position:relative;overflow:hidden;
+  transition:transform .4s,border-color .4s;
+}
+.insight-card:hover{
+  transform:translateY(-2px);border-color:rgba(200,164,92,.25);
+}
+.insight-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,transparent,var(--accent),transparent);
+  opacity:.4;
+}
+.insight-num{
+  font-family:var(--display);font-size:4rem;font-weight:900;
+  color:rgba(200,164,92,.12);position:absolute;top:1.5rem;right:2rem;
+  line-height:1;
+}
+.insight-card h3{
+  font-family:var(--display);font-size:1.5rem;font-weight:700;
+  margin-bottom:1rem;line-height:1.3;
+}
+.insight-card h3 em{font-style:italic;color:var(--accent)}
+.insight-card .source{
+  font-family:var(--sans);font-size:.7rem;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--accent-dark);margin-bottom:1.5rem;
+  display:block;
+}
+.insight-card p{color:var(--text-muted);font-size:1rem;line-height:1.9}
+.insight-card .takeaway{
+  margin-top:1.5rem;padding-top:1.5rem;
+  border-top:1px solid rgba(200,164,92,.1);
+  font-weight:600;color:var(--text);font-size:1.05rem;
+}
+.insight-card .takeaway::before{
+  content:'→ ';color:var(--accent);font-weight:700;
+}
+
+/* ===== BOOK GRID ===== */
+.book-section{padding:2rem 0 6rem}
+.book-category{
+  margin-bottom:4rem;
+}
+.book-category-title{
+  font-family:var(--sans);font-size:.7rem;letter-spacing:.4em;
+  text-transform:uppercase;color:var(--accent);margin-bottom:2rem;
+  padding-bottom:1rem;border-bottom:1px solid rgba(200,164,92,.15);
+}
+.book-grid{
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));
+  gap:2rem;
+}
+.book-item{
+  text-align:center;transition:transform .4s;
+}
+.book-item:hover{transform:translateY(-6px)}
+.book-cover{
+  width:100%;aspect-ratio:2/3;border-radius:8px;overflow:hidden;
+  background:var(--bg-card);border:1px solid rgba(200,164,92,.1);
+  position:relative;box-shadow:0 8px 30px rgba(0,0,0,.4);
+  transition:box-shadow .4s;
+}
+.book-item:hover .book-cover{box-shadow:0 12px 40px rgba(200,164,92,.15)}
+.book-cover img{
+  width:100%;height:100%;object-fit:cover;display:block;
+}
+.book-cover .placeholder{
+  width:100%;height:100%;display:flex;flex-direction:column;
+  justify-content:center;align-items:center;padding:1.2rem;
+  background:linear-gradient(135deg,var(--bg-card),#1e1e1e);
+}
+.book-cover .placeholder .book-emoji{
+  font-size:2.5rem;margin-bottom:.8rem;
+}
+.book-cover .placeholder .book-title-ph{
+  font-family:var(--serif);font-size:.75rem;color:var(--text-muted);
+  line-height:1.4;text-align:center;
+}
+.book-cover .placeholder .book-author-ph{
+  font-family:var(--sans);font-size:.6rem;color:var(--text-dim);
+  margin-top:.4rem;
+}
+.book-title{
+  font-family:var(--serif);font-size:.85rem;margin-top:.8rem;
+  line-height:1.4;color:var(--text);
+}
+.book-author{
+  font-family:var(--sans);font-size:.65rem;color:var(--text-dim);
+  margin-top:.2rem;
+}
+
+/* ===== TENSIONS ===== */
+.tensions{padding:2rem 0 6rem}
+.tension-card{
+  background:var(--bg-card);border:1px solid rgba(200,164,92,.08);
+  border-radius:16px;padding:2.5rem;margin-bottom:2rem;
+  display:grid;grid-template-columns:1fr 1fr;gap:2rem;
+  position:relative;
+}
+.tension-card::after{
+  content:'⚡';position:absolute;top:50%;left:50%;
+  transform:translate(-50%,-50%);
+  font-size:1.5rem;background:var(--bg-card);
+  padding:.5rem;border-radius:50%;z-index:1;
+}
+.tension-side{padding:0 .5rem}
+.tension-side h4{
+  font-family:var(--sans);font-size:.65rem;letter-spacing:.3em;
+  text-transform:uppercase;margin-bottom:1rem;
+}
+.tension-side:first-child h4{color:var(--accent)}
+.tension-side:last-child h4{color:#7ca8c8}
+.tension-side p{color:var(--text-muted);font-size:.95rem;line-height:1.8}
+.tension-verdict{
+  grid-column:1/-1;padding-top:1.5rem;
+  border-top:1px solid rgba(200,164,92,.1);
+  color:var(--text);font-size:1rem;font-weight:600;
+}
+.tension-verdict::before{content:'→ 我的暂时立场：';color:var(--accent)}
+
+/* ===== FRAMEWORK ===== */
+.framework{padding:2rem 0 6rem}
+.fw-grid{
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));
+  gap:1.5rem;
+}
+.fw-card{
+  background:var(--bg-card);border:1px solid rgba(200,164,92,.1);
+  border-radius:12px;padding:2rem;
+  transition:border-color .3s;
+}
+.fw-card:hover{border-color:rgba(200,164,92,.3)}
+.fw-icon{font-size:1.8rem;margin-bottom:1rem}
+.fw-card h4{
+  font-family:var(--display);font-size:1.1rem;font-weight:700;
+  margin-bottom:.3rem;
+}
+.fw-card .fw-layer{
+  font-family:var(--sans);font-size:.6rem;letter-spacing:.3em;
+  text-transform:uppercase;color:var(--accent-dark);margin-bottom:1rem;
+}
+.fw-card p{color:var(--text-muted);font-size:.9rem;line-height:1.8}
+
+/* ===== CLOSING ===== */
+.closing{
+  padding:6rem 0;text-align:center;
+  background:radial-gradient(ellipse 80% 50% at 50% 100%,rgba(200,164,92,.06),transparent);
+}
+.closing blockquote{
+  font-family:var(--display);font-size:clamp(1.3rem,3vw,2rem);
+  font-style:italic;color:var(--text);max-width:700px;
+  margin:0 auto 2rem;line-height:1.6;
+}
+.closing blockquote cite{
+  display:block;font-style:normal;font-family:var(--sans);
+  font-size:.7rem;letter-spacing:.3em;text-transform:uppercase;
+  color:var(--accent-dark);margin-top:1rem;
+}
+.closing .final-words{
+  font-size:1.1rem;color:var(--text-muted);max-width:600px;
+  margin:3rem auto 0;line-height:2;
+}
+
+/* ===== FOOTER ===== */
+.footer{
+  padding:3rem 0;text-align:center;
+  border-top:1px solid rgba(200,164,92,.08);
+}
+.footer p{
+  font-family:var(--sans);font-size:.7rem;letter-spacing:.2em;
+  color:var(--text-dim);
+}
+.footer a{color:var(--accent-dark)}
+
+/* ===== DIVIDER ===== */
+.divider{
+  width:60px;height:1px;margin:0 auto;
+  background:linear-gradient(90deg,transparent,var(--accent),transparent);
+}
+
+/* ===== ANIMATIONS ===== */
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(20px)}
+  to{opacity:1;transform:translateY(0)}
+}
+@keyframes scrollPulse{
+  0%,100%{opacity:.3;transform:scaleY(1)}
+  50%{opacity:1;transform:scaleY(1.3)}
+}
+
+/* ===== SCROLL REVEAL ===== */
+.reveal{opacity:0;transform:translateY(30px);transition:opacity .6s,transform .6s}
+.reveal.visible{opacity:1;transform:translateY(0)}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:768px){
+  .hero-stats{gap:1.5rem}
+  .hero-stat-num{font-size:2rem}
+  .tension-card{grid-template-columns:1fr;gap:1.5rem}
+  .tension-card::after{
+    position:relative;top:auto;left:auto;transform:none;
+    grid-column:1/-1;text-align:center;padding:.5rem 0;
+  }
+  .fw-grid{grid-template-columns:1fr}
+  .book-grid{grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:1.5rem}
+  .insight-card{padding:2rem}
+}
+@media(max-width:480px){
+  .book-grid{grid-template-columns:repeat(3,1fr);gap:1rem}
+  .hero-stats{flex-direction:column;gap:1rem}
+}
+</style>
+</head>
+<body>
+
+<!-- ========== HERO ========== -->
+<section class="hero">
+  <div class="hero-eyebrow">2026 · 年度阅读收获</div>
+  <h1>在<em>奇点</em>与<em>道</em>之间<br>寻找锚点</h1>
+  <p class="hero-sub">24本书，横跨TESCREAL技术乌托邦、东方古典智慧、商业投资哲学、认知科学四大板块。读完之后，我没有变成一个更坚定的技术乐观主义者——我变成了一个更清醒的人。</p>
+  <div class="hero-stats">
+    <div class="hero-stat">
+      <span class="hero-stat-num">24</span>
+      <span class="hero-stat-label">深度阅读</span>
+    </div>
+    <div class="hero-stat">
+      <span class="hero-stat-num">4</span>
+      <span class="hero-stat-label">知识板块</span>
+    </div>
+    <div class="hero-stat">
+      <span class="hero-stat-num">6</span>
+      <span class="hero-stat-label">颠覆性观点</span>
+    </div>
+  </div>
+  <div class="scroll-hint">
+    <span></span>
+    <small>向下探索</small>
+  </div>
+</section>
+
+<!-- ========== INTRO ========== -->
+<section class="container">
+  <p class="intro-text reveal">
+    2026年书单的设计有一个隐含的核心追问：<span class="highlight">人类正在获得前所未有的技术力量，但我们配得上这种力量吗？</span><br><br>
+    这个问题是库兹韦尔的奇点预言、博斯特罗姆的超级智能警告、辛格的有效利他主义、老子的道法自然、卡尼曼的认知偏差研究——这24本书共同指向的同一个焦点。<br><br>
+    读完之后，我的回答是：<span class="highlight">不配。但"配得上"不是一个终点，而是一个持续的过程。</span>
+  </p>
+</section>
+
+<div class="divider"></div>
+
+<!-- ========== 6 INSIGHTS ========== -->
+<section class="container insights">
+  <div class="section-header reveal">
+    <div class="eyebrow">Part I</div>
+    <h2>六个颠覆认知的观点</h2>
+  </div>
+
+  <div class="insight-card reveal">
+    <span class="insight-num">01</span>
+    <h3>"进步不是必然的"<br><em>——反熵原则的清醒剂</em></h3>
+    <span class="source">《反熵原则》· 马克斯·莫尔</span>
+    <p>莫尔是超人类主义的奠基人，他比任何人都有理由鼓吹"技术自动带来进步"，但他没有。反熵原则的核心不是"技术会拯救我们"，而是"不进则退是宇宙的基本法则"——在一个熵增的宇宙中，停止努力就等于退步。</p>
+    <p>这让我彻底改变了对"躺平"的看法。以前我觉得躺平是一种个人选择，无可厚非。现在我认为，在个体层面它可以是自我保护，但在文明层面，大规模的放弃努力是一种集体自杀。宇宙不会因为你舒服就停止走向热寂。</p>
+    <div class="takeaway">把"不进则退"从鸡汤变成物理学定律，你就不会再为"要不要努力"纠结了。</div>
+  </div>
+
+  <div class="insight-card reveal">
+    <span class="insight-num">02</span>
+    <h3>"长期主义可能是最危险的道德框架"<br><em>——托雷斯的当头棒喝</em></h3>
+    <span class="source">《长期主义是世界上最危险的世俗信条》· 埃米尔·托雷斯</span>
+    <p>托雷斯——一个曾经的长期主义内部人士——指出，当你认为未来万亿潜在人口的福祉比当下80亿真实人口的福祉更重要时，你就为一切暴行打开了道德后门。FTX的班克曼-弗里德就是活生生的例子：他用长期主义逻辑为欺诈辩护——"我赚钱是为了拯救世界。"</p>
+    <p>但托雷斯的批判不是要我们放弃对未来的关怀。他要我们警惕的是一种特定的思维陷阱：<strong>用抽象的未来苦难来逃避具体的当下责任。</strong></p>
+    <div class="takeaway">关心未来是好的，但不能成为不关心当下的借口。道德不是数学题，不能只算期望值。</div>
+  </div>
+
+  <div class="insight-card reveal">
+    <span class="insight-num">03</span>
+    <h3>"系统优于目标"<br><em>——原子习惯的复利真相</em></h3>
+    <span class="source">《原子习惯》· 詹姆斯·克利尔</span>
+    <p>"你不会升到目标的高度，你会落到系统的水平。"这句话拆穿了我过去十年的自我欺骗。我每年年初都定目标——读50本书、跑2000公里、写10万字——然后每年年底都在焦虑中盘点"还差多少"。</p>
+    <p>1%法则不是鸡汤，是复利数学。每天进步1%，一年后是37倍。但反过来也成立：每天退步1%，一年后你只剩下0.03。系统是双向的——它可以是正向飞轮，也可以是负向螺旋。</p>
+    <div class="takeaway">别再定年度目标了。设计一个你不需要意志力就能运转的日常系统。</div>
+  </div>
+
+  <div class="insight-card reveal">
+    <span class="insight-num">04</span>
+    <h3>"无为不是不作为"<br><em>——老子被误解了两千年</em></h3>
+    <span class="source">《道德经》· 老子</span>
+    <p>"无为而治"是我过去最看不上的东方智慧——总觉得是消极避世的借口。读完《道德经》我才理解：无为是"不妄为、不强行、不违背自然规律的作为"。老子的核心洞察是：<strong>人类理性是有边界的。</strong></p>
+    <p>这和塔勒布的"医源性损伤"概念形成了惊人的呼应——过度干预本身就是最大的风险来源。现代医学的过度治疗、教育的过度规划、管理的过度流程，都是"有为"过度的典型症状。</p>
+    <div class="takeaway">在不确定的世界里，克制"做点什么"的冲动，本身就是一种高级能力。</div>
+  </div>
+
+  <div class="insight-card reveal">
+    <span class="insight-num">05</span>
+    <h3>"心流就是对抗精神熵"<br><em>——幸福的操作系统</em></h3>
+    <span class="source">《心流》· 米哈里·契克森米哈赖</span>
+    <p>契克森米哈赖把幸福定义为"控制意识的能力"，而不是"发生在你身上的好事"。精神熵——意识的无序状态——是痛苦的根源。焦虑、恐惧、嫉妒、无聊，都是注意力被分散、内心冲突的结果。</p>
+    <p>心流的条件极其清晰：挑战与技能匹配、目标明确、反馈即时。这意味着幸福不是一个目的地，而是一种可以被设计的状态。</p>
+    <div class="takeaway">幸福不是找到的，是设计出来的。给自己一个"刚好够难"的任务，心流自然来。</div>
+  </div>
+
+  <div class="insight-card reveal">
+    <span class="insight-num">06</span>
+    <h3>"碳硅共生，不是碳硅竞争"<br><em>——AI时代的正确姿势</em></h3>
+    <span class="source">《共智时代》· 碳硅共生</span>
+    <p>"碳基生命的伟大之处不在于计算，而在于提出值得计算的问题。"这句话解决了我半年来的AI焦虑。我一直在担心"AI会不会取代我"，但正确的问题不是"我能不能比AI更强"，而是"我能不能借助AI变得更强"。</p>
+    <p>库兹韦尔说得更直接："我们最终不会与人工智能竞争，我们将融入它们。"</p>
+    <div class="takeaway">停止和AI比计算速度。把精力花在AI做不了的事上——提出原创问题、做出价值判断、建立深层连接。</div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ========== BOOK GRID ========== -->
+<section class="wide-container book-section">
+  <div class="section-header reveal">
+    <div class="eyebrow">Part II</div>
+    <h2>年度书单</h2>
+    <p>四大板块，24本深度阅读</p>
+  </div>
+
+  <!-- TESCREAL -->
+  <div class="book-category reveal">
+    <div class="book-category-title">TESCREAL 技术乌托邦核心 · 11本</div>
+    <div class="book-grid">
+      <div class="book-item">
+        <div class="book-cover"><img src="https://img1.doubanio.com/view/subject/l/public/s34835467.jpg" alt="奇点更近" onerror="this.parentElement.innerHTML='<div class=placeholder><span class=book-emoji>🌌</span><span class=book-title-ph>奇点更近</span><span class=book-author-ph>雷·库兹韦尔</span></div>'"></div>
+        <div class="book-title">奇点更近</div>
+        <div class="book-author">雷·库兹韦尔</div>
+      </div>
+      <div class="book-item">
+        <div class="book-cover"><img src="https://img2.doubanio.com/view/subject/l/public/s34703152.jpg" alt="我们欠未来什么" onerror="this.parentElement.innerHTML='<div class=placeholder><span class=book-emoji>⏳</span><span class=book-title-ph>我们欠未来什么</span><span class=book-author-ph>威廉·麦斯科维尔</span></div>'"></div>
+        <div class="book-title">我们欠未来什么</div>
+        <div class="book-author">威廉·麦斯科维尔</div>
+      </div>
+      <div class="book-item">
+        <div class="book-cover"><img src="https://img1.doubanio.com/view/subject/l/public/s34741418.jpg" alt="你能做的最大善事" onerror="this.parentElement.innerHTML='<div class=placeholder><span class=book-emoji>🌍</span><span class=book-title-ph>你能做的最大善事</span><span class=book-author-ph>彼得·辛格</span></div>'"></div>
+        <div class="book-title">你能做的最大善事</div>
+        <div class="book-author">彼得·辛格</div>
+      </div>
+      <div class="book-item">
+        <div class="book-cover"><img src="https://img2.doubanio.com/view/subject/l/public/s29651972.jpg" alt="超级智能" onerror="this.parentElement.innerHTML='<div class=placeholder><span class=book-emoji>🤖</span><span class=book-title-ph>超级智能</span><span class=book-author-ph>尼克·博斯特罗姆</span></div>'"></div>
+        <div class="book-title">超级智能</div>
+        <div class="book-author">尼克·博斯特罗姆</div>
+      </div>
+      <div class="book-item">
+        <div class="book-cover"><div class="placeholder"><span class="book-emoji">🔥</span><span class="book-title-ph">反熵原则</span><span class="book-author-ph">马克斯·莫尔</span></div></div>
+        <div class="book-title">反熵原则</div>
+        <div class="book-author">马克斯·莫尔</div>
+      </div>
+      <div class="book-item">
+        <div class="book-cover"><div class="placeholder"><span class="book-emoji">📄</span><span class="book-title-ph">TESCREAL原始论文</span><span class="book-author-ph">格布鲁 & 托雷斯</span></div></div>
+        <div class="book-title">TESCREAL原始论文</div>
+        <div class="book-author">格布鲁 & 托雷斯</div>
+      </div>
+      <div class="book-item">
+        <div class="book-cover"><div class="placeholder"><span class="book-emoji">⚠️</span><span class="book-title-ph>长期主义是最危险的信条</span><span class=book-author-ph>埃米尔·托雷斯</span></div></div>
+        <div class="book-title">长期主义是最危险的信条</div>
+        <div class="book-author">埃米尔·托雷斯</div>
+      </div>
+      <div class="book-item">
+        <div class="book-cover"><div class="placeholder"><span class="book-emoji">🧬</span><span class="book-title-ph">TESCREAL与优生学</span><span class="book-author-ph">蒙特利尔伦理研究中心</span></div></div>
+        <div class="book-title">TESCREAL与优生学</div>
+        <div class="book-author">蒙特利尔伦理研究中心</div>
+      </div>
+      <div class="book-item">
+        <div class="book-cover"><img src="https://img1.doubanio.com/view/subject/l/public/s1727632.jpg" alt="道德经" onerror="this.parentElement.innerHTML='<div class=placeholder><span class=book-emoji>☯️</span><span class=book-title-ph>道德经</span><span class=book-author-ph>老子</span></div>'"></div>
+        <div class="book-title">道德经</div>
+        <div class="book-author">老子</div>
+      </div>
+      <div class="book-item">
+        <div class="book-cover"><img src="https://img2.doubanio.com/view/subject/l/public/s1071822.jpg" alt="庄子" onerror="this.parentElement.innerHTML='<div class=placeholder><span class=book-emoji>🦋</span><span class=book-title-ph>庄子</span><span class=book-author-ph>庄周</span></div>'"></div>
+        <div class="book-title">庄子</div>
+        <div class="book-author">庄周</div>
+      </div>
+      <div class="book-item">
+        <div class="book-cover"><img src="https://img1.doubanio.com/view/subject/l/public/s1076931.jpg" alt="周易" onerror="this.parentElement.innerHTML='<div class=placeholder><span class=book-emoji>☰</span><span class=book-title-ph>周易</span><span class=book-author-ph>廖名春</span></div>'"></div>
+        <div class="book-title">周易</div>
+        <div class="book-author">廖名春</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 商业与投资 -->
+  <div class="book-category reveal">
+    <div class="book-category-title">商业与投资 · 5本</div>
+    <div class="book-grid">
+      <div class="book-item">
+        <div class="book-cover"><img src="https://img2.doubanio.com/view/subject/l/public/s27234752.jpg" alt="穷查理宝典" onerror="this.parentElement.innerHTML='<div class=placeholder><span class=book-emoji>🧠</span><span class=book-title-ph>穷查理宝典</span><span class=book-author-ph>查理·芒格</span></div>'"></div>
+        <div class="book-title">穷查理宝典</div>
+        <div class="book-author">查理·芒格</div>
+      </div>
+      <div class="book-item">
+        <div class="book-cover"><img src="https://img1.doubanio.com/view/subject/l/public/s6809078.jpg" alt="投资最重要的事" onerror="this.parentElement.innerHTML='<div class=placeholder><span class=book-emoji>📊</span><span class=book-title-ph>投资最重要的事</span><span class=book-author-ph>霍华德·马克斯</span></div>'"></div>
+        <div class="book-title">投资最重要的事</div>
+        <div class="book-author">霍华德·马克斯</div>
+      </div>
+      <div class="book-item">
+        <div class="book-cover"><img src="https://img2.doubanio.com/view/subject/l/public/s29498132.jpg" alt="反脆弱" onerror="this.parentElement.innerHTML='<div class=placeholder><span class=book-emoji>🪨</span><span class=book-title-ph>反脆弱</span><span class=book-author-ph>纳西姆·塔勒布</span></div>'"></div>
+        <div class="book-title">反脆弱</div>
+        <div class="book-author">纳西姆·塔勒布</div>
+      </div>
+      <div class="book-item">
+        <div class="book-cover"><img src="https://img1.doubanio.com/view/subject/l/public/s27817308.jpg" alt="从0到1" onerror="this.parentElement.innerHTML='<div class=placeholder><span class=book-emoji>🚀</span><span class=book-title-ph>从0到1</span><span class=book-author-ph>彼得·蒂尔</span></div>'"></div>
+        <div class="book-title">从0到1</div>
+        <div class="book-author">彼得·蒂尔</div>
+      </div>
+      <div class="book-item">
+        <div class="book-cover"><img src="https://img1.doubanio.com/view/subject/l/public/s29779818.jpg" alt="原则" onerror="this.parentElement.innerHTML='<div class=placeholder><span class=book-emoji>📐</span><span class=book-title-ph>原则</span><span class=book-author-ph>瑞·达利欧</span></div>'"></div>
+        <div class="book-title">原则</div>
+        <div class="book-author">瑞·达利欧</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- AI与技术 -->
+  <div class="book-category reveal">
+    <div class="book-category-title">AI与技术 · 4本</div>
+    <div class="book-grid">
+      <div class="book-item">
+        <div class="book-cover"><div class="placeholder"><span class="book-emoji">🤝</span><span class="book-title-ph">共智时代</span><span class="book-author-ph">碳硅共生</span></div></div>
+        <div class="book-title">共智时代</div>
+        <div class="book-author">碳硅共生</div>
+      </div>
+      <div class="book-item">
+        <div class="book-cover"><img src="https://img1.doubanio.com/view/subject/l/public/s33528568.jpg" alt="AI 3.0" onerror="this.parentElement.innerHTML='<div class=placeholder><span class=book-emoji>🧠</span><span class=book-title-ph>AI 3.0</span><span class=book-author-ph>梅拉妮·米歇尔</span></div>'"></div>
+        <div class="book-title">AI 3.0</div>
+        <div class="book-author">梅拉妮·米歇尔</div>
+      </div>
+      <div class="book-item">
+        <div class="book-cover"><img src="https://img2.doubanio.com/view/subject/l/public/s29830292.jpg" alt="深度学习" onerror="this.parentElement.innerHTML='<div class=placeholder><span class=book-emoji>🔬</span><span class=book-title-ph>深度学习</span><span class=book-author-ph>古德费洛等</span></div>'"></div>
+        <div class="book-title">深度学习</div>
+        <div class="book-author">古德费洛等</div>
+      </div>
+      <div class="book-item">
+        <div class="book-cover"><img src="https://img2.doubanio.com/view/subject/l/public s29688032.jpg" alt="设计数据密集型应用" onerror="this.parentElement.innerHTML='<div class=placeholder><span class=book-emoji>🗄️</span><span class=book-title-ph>设计数据密集型应用</span><span class=book-author-ph>马丁·克莱普曼</span></div>'"></div>
+        <div class="book-title">设计数据密集型应用</div>
+        <div class="book-author">马丁·克莱普曼</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 个人成长与认知 -->
+  <div class="book-category reveal">
+    <div class="book-category-title">个人成长与认知 · 4本</div>
+    <div class="book-grid">
+      <div class="book-item">
+        <div class="book-cover"><img src="https://img2.doubanio.com/view/subject/l/public/s6510132.jpg" alt="思考，快与慢" onerror="this.parentElement.innerHTML='<div class=placeholder><span class=book-emoji>💭</span><span class=book-title-ph>思考，快与慢</span><span class=book-author-ph>丹尼尔·卡尼曼</span></div>'"></div>
+        <div class="book-title">思考，快与慢</div>
+        <div class="book-author">丹尼尔·卡尼曼</div>
+      </div>
+      <div class="book-item">
+        <div class="book-cover"><img src="https://img2.doubanio.com/view/subject/l/public/s33647772.jpg" alt="原子习惯" onerror="this.parentElement.innerHTML='<div class=placeholder><span class=book-emoji>⚛️</span><span class=book-title-ph>原子习惯</span><span class=book-author-ph>詹姆斯·克利尔</span></div>'"></div>
+        <div class="book-title">原子习惯</div>
+        <div class="book-author">詹姆斯·克利尔</div>
+      </div>
+      <div class="book-item">
+        <div class="book-cover"><img src="https://img1.doubanio.com/view/subject/l/public/s29156038.jpg" alt="心流" onerror="this.parentElement.innerHTML='<div class=placeholder><span class=book-emoji>🧘</span><span class=book-title-ph>心流</span><span class=book-author-ph>契克森米哈赖</span></div>'"></div>
+        <div class="book-title">心流</div>
+        <div class="book-author">契克森米哈赖</div>
+      </div>
+      <div class="book-item">
+        <div class="book-cover"><img src="https://img2.doubanio.com/view/subject/l/public/s29476742.jpg" alt="活出生命的意义" onerror="this.parentElement.innerHTML='<div class=placeholder><span class=book-emoji>✨</span><span class=book-title-ph>活出生命的意义</span><span class=book-author-ph>维克多·弗兰克尔</span></div>'"></div>
+        <div class="book-title">活出生命的意义</div>
+        <div class="book-author">维克多·弗兰克尔</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ========== TENSIONS ========== -->
+<section class="container tensions">
+  <div class="section-header reveal">
+    <div class="eyebrow">Part III</div>
+    <h2>三个未解决的张力</h2>
+    <p>读完24本书，有三组矛盾我没有想通。记录下来，留待明年继续思考。</p>
+  </div>
+
+  <div class="tension-card reveal">
+    <div class="tension-side">
+      <h4>技术乐观</h4>
+      <p>库兹韦尔说2029年AGI到来、2045年奇点到来、人类将实现长寿逃逸速度。加速回报定律有几十年的数据支撑，逻辑自洽。</p>
+    </div>
+    <div class="tension-side">
+      <h4>技术审慎</h4>
+      <p>博斯特罗姆说超级智能可能是人类的最后一个发明。托雷斯说这些叙事背后有优生学的幽灵。技术乌托邦叙事从来不是价值中立的。</p>
+    </div>
+    <div class="tension-verdict">技术发展的趋势可能是对的（指数增长），但时间表和具体形态是高度不确定的。保持关注，但不要押注单一场景。</div>
+  </div>
+
+  <div class="tension-card reveal">
+    <div class="tension-side">
+      <h4>当下关怀</h4>
+      <p>辛格说每5000美元就能挽救一条疟疾患者的生命。托雷斯说长期主义在系统性地忽视当下苦难。每一个抽象的"最大化效用"背后，都有一个具体的、正在受苦的人。</p>
+    </div>
+    <div class="tension-side">
+      <h4>未来关怀</h4>
+      <p>麦斯科维尔说防范存在性风险可能产生更大的道德价值。未来万亿人口的福祉在数学上确实权重更大。但老子提醒：最重要的东西往往是不可量化的。</p>
+    </div>
+    <div class="tension-verdict">用有效利他主义的框架做资源分配的参考，但不把它当成唯一的道德标准。当下和未来都重要，不能用一个否定另一个。</div>
+  </div>
+
+  <div class="tension-card reveal">
+    <div class="tension-side">
+      <h4>理性决策</h4>
+      <p>卡尼曼证明了系统1（直觉）充满偏差，系统2（理性）才是正确的决策模式。芒格说要建立多元思维模型，用检查清单对抗认知偏差。</p>
+    </div>
+    <div class="tension-side">
+      <h4>直觉智慧</h4>
+      <p>庄子的庖丁解牛说，最高境界是"以神遇而不以目视"——放弃分析，让直觉接管。老子说"为学日益，为道日损"——真正的智慧是做减法。</p>
+    </div>
+    <div class="tension-verdict">初级阶段信理性（建立检查清单、对抗认知偏差），高级阶段信直觉（当你的直觉是经过一万小时刻意练习训练出来的）。大多数人的直觉不可信，因为它是未经训练的系统1在裸奔。</div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ========== FRAMEWORK ========== -->
+<section class="container framework">
+  <div class="section-header reveal">
+    <div class="eyebrow">Part IV</div>
+    <h2>一个统一的行动框架</h2>
+    <p>如果把24本书浓缩成一套可执行的人生操作系统</p>
+  </div>
+
+  <div class="fw-grid">
+    <div class="fw-card reveal">
+      <div class="fw-icon">⚡</div>
+      <div class="fw-layer">底层操作系统</div>
+      <h4>反熵</h4>
+      <p>不进则退。每天的系统要确保正向复利。学习、运动、创造——三件事每天至少做一件。</p>
+    </div>
+    <div class="fw-card reveal">
+      <div class="fw-icon">🧩</div>
+      <div class="fw-layer">认知层</div>
+      <h4>多元思维 + 偏差审计</h4>
+      <p>用芒格的格栅理论避免单一学科的盲区。用卡尼曼的系统1/系统2框架在重大决策前强制启动慢思考。</p>
+    </div>
+    <div class="fw-card reveal">
+      <div class="fw-icon">🎯</div>
+      <div class="fw-layer">行动层</div>
+      <h4>无为 + 杠铃策略</h4>
+      <p>克制"做点什么"的冲动。在确定性领域建立系统自动运转。在不确定性领域用杠铃策略——极度保守 + 极度冒险。</p>
+    </div>
+    <div class="fw-card reveal">
+      <div class="fw-icon">🤝</div>
+      <div class="fw-layer">关系层</div>
+      <h4>碳硅共生</h4>
+      <p>把AI当成协作者，不是工具，也不是威胁。培养驾驭工程能力——让AI做数据处理，自己专注提问、判断、连接。</p>
+    </div>
+    <div class="fw-card reveal">
+      <div class="fw-icon">🧘</div>
+      <div class="fw-layer">意义层</div>
+      <h4>心流 + 意义疗法</h4>
+      <p>在有意义的挑战中创造心流，就是最深的幸福。不要等到"退休了"才开始做重要的事。</p>
+    </div>
+    <div class="fw-card reveal">
+      <div class="fw-icon">🌍</div>
+      <div class="fw-layer">伦理层</div>
+      <h4>当下关怀</h4>
+      <p>关心未来，但不以牺牲当下为代价。道德不是数学题。每一个抽象的"最大化效用"背后，都有一个具体的、正在受苦的人。</p>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ========== CLOSING ========== -->
+<section class="closing">
+  <div class="container reveal">
+    <blockquote>
+      "天地与我并生，而万物与我为一。"
+      <cite>庄子 · 齐物论</cite>
+    </blockquote>
+    <p class="final-words">
+      有限的生命面对无限的知识，不是要放弃，而是要在有限中找到无限——在每一个当下创造心流，在每一次选择中追问意义，在每一次失败中提炼原则。<br><br>
+      这就是我2026年阅读24本书的全部收获。<br>
+      不多，但够用了。
+    </p>
+  </div>
+</section>
+
+<!-- ========== FOOTER ========== -->
+<footer class="footer">
+  <p>2026 · 在奇点与道之间寻找锚点 · Built with ❤️</p>
+</footer>
+
+<script>
+// Scroll reveal
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
