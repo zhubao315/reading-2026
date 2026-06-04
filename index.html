@@ -166,8 +166,9 @@ a:hover{color:var(--accent-light)}
   padding-bottom:1rem;border-bottom:1px solid rgba(200,164,92,.15);
 }
 .book-grid{
-  display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));
-  gap:2rem;
+  display:grid;
+  grid-template-columns:repeat(6,1fr);
+  gap:1.5rem 1.2rem;
 }
 .book-item{
   text-align:center;transition:transform .4s;
@@ -178,6 +179,7 @@ a:hover{color:var(--accent-light)}
   background:var(--bg-card);border:1px solid rgba(200,164,92,.1);
   position:relative;box-shadow:0 8px 30px rgba(0,0,0,.4);
   transition:box-shadow .4s;
+  max-width:200px;margin:0 auto;
 }
 .book-item:hover .book-cover{box-shadow:0 12px 40px rgba(200,164,92,.15)}
 .book-cover img{
@@ -312,6 +314,12 @@ a:hover{color:var(--accent-light)}
 .reveal.visible{opacity:1;transform:translateY(0)}
 
 /* ===== RESPONSIVE ===== */
+@media(max-width:1200px){
+  .book-grid{grid-template-columns:repeat(5,1fr);gap:1.5rem 1rem}
+}
+@media(max-width:900px){
+  .book-grid{grid-template-columns:repeat(4,1fr);gap:1.2rem .8rem}
+}
 @media(max-width:768px){
   .hero-stats{gap:1.5rem}
   .hero-stat-num{font-size:2rem}
@@ -321,12 +329,21 @@ a:hover{color:var(--accent-light)}
     grid-column:1/-1;text-align:center;padding:.5rem 0;
   }
   .fw-grid{grid-template-columns:1fr}
-  .book-grid{grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:1.5rem}
+  .book-grid{grid-template-columns:repeat(4,1fr);gap:1rem .8rem}
+  .book-title{font-size:.78rem}
+  .book-author{font-size:.6rem}
   .insight-card{padding:2rem}
 }
-@media(max-width:480px){
-  .book-grid{grid-template-columns:repeat(3,1fr);gap:1rem}
-  .hero-stats{flex-direction:column;gap:1rem}
+@media(max-width:540px){
+  .book-grid{grid-template-columns:repeat(3,1fr);gap:.8rem .6rem}
+  .book-title{font-size:.72rem}
+  .book-author{font-size:.55rem}
+  .book-cover{border-radius:6px}
+}
+@media(max-width:360px){
+  .book-grid{grid-template-columns:repeat(3,1fr);gap:.6rem .5rem}
+  .book-title{font-size:.65rem;margin-top:.5rem}
+  .book-author{display:none}
 }
 </style>
 </head>
@@ -470,12 +487,12 @@ a:hover{color:var(--accent-light)}
         <div class="book-author">马克斯·莫尔</div>
       </div>
       <div class="book-item">
-        <div class="book-cover"><div class="placeholder"><span class="book-emoji">📄</span><span class="book-title-ph">TESCREAL原始论文</span><span class="book-author-ph">格布鲁 & 托雷斯</span></div></div>
+        <div class="book-cover"><img src="covers/06-tescreal.svg" alt="TESCREAL原始论文"></div>
         <div class="book-title">TESCREAL原始论文</div>
         <div class="book-author">格布鲁 & 托雷斯</div>
       </div>
       <div class="book-item">
-        <div class="book-cover"><div class="placeholder"><span class="book-emoji">⚠️</span><span class="book-title-ph>长期主义是最危险的信条</span><span class=book-author-ph>埃米尔·托雷斯</span></div></div>
+        <div class="book-cover"><img src="covers/07-longtermism.svg" alt="长期主义是最危险的信条"></div>
         <div class="book-title">长期主义是最危险的信条</div>
         <div class="book-author">埃米尔·托雷斯</div>
       </div>
@@ -554,7 +571,7 @@ a:hover{color:var(--accent-light)}
         <div class="book-author">古德费洛等</div>
       </div>
       <div class="book-item">
-        <div class="book-cover"><img src="https://img2.doubanio.com/view/subject/l/public s29688032.jpg" alt="设计数据密集型应用" onerror="this.parentElement.innerHTML='<div class=placeholder><span class=book-emoji>🗄️</span><span class=book-title-ph>设计数据密集型应用</span><span class=book-author-ph>马丁·克莱普曼</span></div>'"></div>
+        <div class="book-cover"><img src="covers/20-dataintensive.jpg" alt="设计数据密集型应用" onerror="this.parentElement.innerHTML='<div class=placeholder><span class=book-emoji>🗄️</span><span class=book-title-ph>设计数据密集型应用</span><span class=book-author-ph>马丁·克莱普曼</span></div>'"></div>
         <div class="book-title">设计数据密集型应用</div>
         <div class="book-author">马丁·克莱普曼</div>
       </div>
