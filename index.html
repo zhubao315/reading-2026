@@ -6,6 +6,10 @@
 <title>在奇点与道之间寻找锚点 — 2026年度阅读收获</title>
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <meta name="description" content="24本书横跨TESCREAL技术乌托邦、东方古典智慧、商业投资哲学、认知科学四大板块的深度阅读收获">
+<meta property="og:title" content="在奇点与道之间寻找锚点 — 2026年度阅读收获">
+<meta property="og:description" content="24本书横跨TESCREAL技术乌托邦、东方古典智慧、商业投资哲学、认知科学四大板块的深度阅读收获">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://zhubao315.github.io/reading-2026/">
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 :root{
@@ -27,20 +31,20 @@ body{
     radial-gradient(circle at 80% 30%,rgba(0,255,204,.03),transparent 50%);
 }
 ::selection{background:var(--riso-pink);color:var(--paper)}
-a{color:var(--ink);text-decoration:underline;text-decoration-color:var(--riso-pink);text-underline-offset:3px;transition:.3s}
+a{color:var(--ink);text-decoration:underline;text-decoration-color:var(--riso-pink);text-underline-offset:3px;transition:color .3s}
 a:hover{color:var(--riso-pink)}
+a:focus-visible{outline:2px solid var(--riso-pink);outline-offset:2px;border-radius:2px}
 
 /* ===== HALFTONE OVERLAY ===== */
 body::before{
   content:'';position:fixed;inset:0;pointer-events:none;z-index:9999;
   background-image:radial-gradient(circle,var(--ink) .5px,transparent .5px);
-  background-size:8px 8px;
-  opacity:.018;
+  background-size:8px 8px;opacity:.018;
 }
 
 /* ===== HERO ===== */
 .hero{
-  min-height:100vh;display:flex;flex-direction:column;
+  min-height:100dvh;display:flex;flex-direction:column;
   justify-content:center;align-items:center;text-align:center;
   position:relative;padding:4rem 2rem;
 }
@@ -48,26 +52,23 @@ body::before{
   font-family:var(--mono);font-size:.7rem;letter-spacing:.3em;
   text-transform:uppercase;color:var(--ink-light);margin-bottom:2rem;
   opacity:0;animation:fadeUp .6s .2s forwards;
-  transform:rotate(-1.5deg);
 }
 .hero h1{
   font-family:var(--serif);font-size:clamp(2.5rem,7vw,5rem);
   font-weight:900;line-height:1.1;max-width:900px;
   color:var(--ink);margin-bottom:2rem;
   opacity:0;animation:fadeUp .6s .4s forwards;
-  /* Risograph misregistration */
   text-shadow:3px 0 var(--riso-pink),-2px 0 var(--riso-cyan);
 }
 .hero h1 em{font-style:italic;color:var(--riso-pink);text-shadow:none;position:relative}
 .hero h1 em::after{
   content:'';position:absolute;bottom:2px;left:-4px;right:-4px;height:8px;
-  background:var(--riso-yellow);opacity:.4;z-index:-1;transform:rotate(-1deg);
+  background:var(--riso-yellow);opacity:.4;z-index:-1;
 }
 .hero-sub{
   font-family:var(--sans);font-size:clamp(.95rem,2vw,1.2rem);
   color:var(--ink-mid);max-width:600px;line-height:2;
   opacity:0;animation:fadeUp .6s .6s forwards;
-  transform:rotate(.5deg);
 }
 .hero-stats{
   display:flex;gap:3rem;margin-top:3rem;
@@ -114,7 +115,6 @@ body::before{
   text-transform:uppercase;color:var(--riso-pink);margin-bottom:.8rem;
   display:inline-block;
   background:var(--riso-yellow);padding:.2rem .6rem;
-  transform:rotate(-1deg);
 }
 .section-header h2{
   font-family:var(--serif);font-size:clamp(1.6rem,4vw,2.8rem);
@@ -151,11 +151,13 @@ body::before{
   border:1px solid rgba(42,36,32,.1);
   padding:2.5rem;margin-bottom:2rem;
   position:relative;overflow:hidden;
-  transition:transform .3s;
+  transition:transform .3s ease,box-shadow .3s ease;
+  cursor:pointer;
 }
 .insight-card:nth-child(odd){transform:rotate(-.4deg)}
 .insight-card:nth-child(even){transform:rotate(.3deg)}
-.insight-card:hover{transform:rotate(0) translateY(-2px)}
+.insight-card:hover{transform:rotate(0) translateY(-3px);box-shadow:6px 6px 0 rgba(42,36,32,.06)}
+.insight-card:active{transform:rotate(0) translateY(-1px)}
 .insight-card::before{
   content:'';position:absolute;top:0;left:0;bottom:0;width:4px;
 }
@@ -189,8 +191,16 @@ body::before{
   font-weight:700;color:var(--ink);font-size:1rem;
   font-family:var(--sans);
 }
-.insight-card .takeaway::before{
-  content:'→ ';color:var(--riso-pink);font-weight:900;
+.insight-card .takeaway::before{content:'→ ';color:var(--riso-pink);font-weight:900}
+
+/* ===== SVG ICON PRESETS ===== */
+.fw-icon-svg{
+  width:28px;height:28px;display:block;margin-bottom:.8rem;
+  color:var(--ink);opacity:.6;
+}
+.tension-icon-svg{
+  width:18px;height:18px;display:block;
+  color:var(--ink-light);opacity:.5;
 }
 
 /* ===== BOOK GRID ===== */
@@ -201,7 +211,6 @@ body::before{
   text-transform:uppercase;color:var(--ink-light);margin-bottom:1.5rem;
   padding-bottom:.8rem;border-bottom:1px dashed rgba(42,36,32,.15);
   background:var(--riso-yellow);display:inline-block;padding:.3rem .8rem;
-  transform:rotate(-.5deg);
 }
 .book-grid{
   display:grid;
@@ -209,7 +218,8 @@ body::before{
   gap:1.8rem 1.2rem;
 }
 .book-item{
-  text-align:center;transition:transform .3s;
+  text-align:center;transition:transform .3s ease;
+  cursor:pointer;
 }
 .book-item:nth-child(3n+1){transform:rotate(-1.5deg)}
 .book-item:nth-child(3n+2){transform:rotate(.8deg)}
@@ -221,7 +231,6 @@ body::before{
   position:relative;
   max-width:180px;margin:0 auto;
   border:1px solid rgba(42,36,32,.08);
-  /* halftone shadow */
   box-shadow:4px 4px 0 rgba(42,36,32,.08);
 }
 .book-cover img{
@@ -239,8 +248,8 @@ body::before{
   background-image:radial-gradient(circle,var(--ink) .8px,transparent .8px);
   background-size:6px 6px;opacity:.04;
 }
-.book-cover .placeholder .book-emoji{
-  font-size:2rem;margin-bottom:.6rem;
+.book-cover .placeholder .book-icon-svg{
+  width:32px;height:32px;color:var(--ink-light);opacity:.4;margin-bottom:.6rem;
 }
 .book-cover .placeholder .book-title-ph{
   font-family:var(--serif);font-size:.7rem;color:var(--ink-mid);
@@ -262,11 +271,10 @@ body::before{
 /* ===== BOOK SPINE STRIP ===== */
 .spine-strip{
   display:flex;height:24px;margin:2rem 0;overflow:hidden;
-  transform:rotate(-.3deg);
 }
 .spine-strip span{
   flex:1;min-width:0;
-  transition:transform .3s;
+  transition:transform .3s ease;
 }
 .spine-strip span:hover{transform:scaleY(1.8)}
 
@@ -278,15 +286,21 @@ body::before{
   padding:2rem;margin-bottom:2rem;
   display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;
   position:relative;
-  transform:rotate(-.2deg);
+  cursor:pointer;
+  transition:transform .3s ease,box-shadow .3s ease;
 }
-.tension-card:nth-child(even){transform:rotate(.3deg)}
-.tension-card::after{
-  content:'⚡';position:absolute;top:50%;left:50%;
+.tension-card:hover{transform:translateY(-2px);box-shadow:6px 6px 0 rgba(42,36,32,.05)}
+.tension-card:active{transform:translateY(0)}
+.tension-card .tension-divider{
+  position:absolute;top:50%;left:50%;
   transform:translate(-50%,-50%);
-  font-size:1.2rem;background:var(--paper-light);
-  padding:.3rem;border-radius:50%;z-index:1;
+  width:32px;height:32px;background:var(--paper-light);
+  border-radius:50%;z-index:1;
+  display:flex;align-items:center;justify-content:center;
   box-shadow:2px 2px 0 rgba(42,36,32,.05);
+}
+.tension-card .tension-divider svg{
+  width:14px;height:14px;color:var(--ink-light);
 }
 .tension-side{padding:0 .3rem}
 .tension-side h4{
@@ -315,13 +329,14 @@ body::before{
   background:var(--paper-light);
   border:1px solid rgba(42,36,32,.08);
   padding:1.8rem;
-  transition:transform .3s;
+  transition:transform .3s ease,box-shadow .3s ease;
   box-shadow:3px 3px 0 rgba(42,36,32,.05);
+  cursor:pointer;
 }
 .fw-card:nth-child(odd){transform:rotate(-.5deg)}
 .fw-card:nth-child(even){transform:rotate(.4deg)}
-.fw-card:hover{transform:rotate(0) translateY(-2px)}
-.fw-icon{font-size:1.5rem;margin-bottom:.8rem}
+.fw-card:hover{transform:rotate(0) translateY(-3px);box-shadow:6px 6px 0 rgba(42,36,32,.06)}
+.fw-card:active{transform:rotate(0) translateY(-1px)}
 .fw-card h4{
   font-family:var(--serif);font-size:1.05rem;font-weight:700;
   margin-bottom:.2rem;
@@ -370,6 +385,11 @@ body::before{
   color:var(--ink-light);
 }
 .footer a{color:var(--ink-mid)}
+.footer .footer-heart{
+  display:inline-block;width:10px;height:10px;
+  color:var(--riso-pink);opacity:.5;
+  vertical-align:middle;margin:0 .15rem;
+}
 
 /* ===== ANIMATIONS ===== */
 @keyframes fadeUp{
@@ -382,7 +402,7 @@ body::before{
 }
 
 /* ===== SCROLL REVEAL ===== */
-.reveal{opacity:0;transform:translateY(20px);transition:opacity .5s,transform .5s}
+.reveal{opacity:0;transform:translateY(20px);transition:opacity .5s ease,transform .5s ease}
 .reveal.visible{opacity:1;transform:translateY(0)}
 
 /* ===== RESPONSIVE ===== */
@@ -396,9 +416,9 @@ body::before{
   .hero-stats{gap:1.5rem}
   .hero-stat-num{font-size:1.8rem}
   .tension-card{grid-template-columns:1fr;gap:1.2rem}
-  .tension-card::after{
+  .tension-card .tension-divider{
     position:relative;top:auto;left:auto;transform:none;
-    grid-column:1/-1;text-align:center;padding:.3rem 0;
+    grid-column:1/-1;text-align:center;margin:.3rem auto;
   }
   .fw-grid{grid-template-columns:1fr}
   .book-grid{grid-template-columns:repeat(4,1fr);gap:1rem .8rem}
@@ -411,13 +431,20 @@ body::before{
   .book-grid{grid-template-columns:repeat(3,1fr);gap:.8rem .6rem}
   .book-title{font-size:.68rem}
   .book-author{font-size:.5rem}
-  .book-cover{border-radius:0}
   .spine-strip{height:12px}
 }
 @media(max-width:360px){
   .book-grid{grid-template-columns:repeat(3,1fr);gap:.6rem .5rem}
   .book-title{font-size:.6rem;margin-top:.4rem}
   .book-author{display:none}
+}
+
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:0.01ms!important;transition-duration:0.01ms!important}
+  .reveal{opacity:1;transform:none}
+  .insight-card:nth-child(odd),.insight-card:nth-child(even),
+  .book-item:nth-child(3n+1),.book-item:nth-child(3n+2),.book-item:nth-child(3n),
+  .fw-card:nth-child(odd),.fw-card:nth-child(even){transform:none}
 }
 </style>
 </head>
@@ -556,57 +583,57 @@ body::before{
     <div class="book-category-title">TESCREAL 技术乌托邦核心 · 11本</div>
     <div class="book-grid">
       <div class="book-item">
-        <div class="book-cover"><img src="covers/01-qidian.jpg" alt="奇点更近"></div>
+        <div class="book-cover"><img src="covers/01-qidian.jpg" alt="奇点更近 - 雷·库兹韦尔"></div>
         <div class="book-title">奇点更近</div>
         <div class="book-author">雷·库兹韦尔</div>
       </div>
       <div class="book-item">
-        <div class="book-cover"><img src="covers/02-weilai.jpg" alt="我们欠未来什么"></div>
+        <div class="book-cover"><img src="covers/02-weilai.jpg" alt="我们欠未来什么 - 威廉·麦斯科维尔"></div>
         <div class="book-title">我们欠未来什么</div>
         <div class="book-author">威廉·麦斯科维尔</div>
       </div>
       <div class="book-item">
-        <div class="book-cover"><img src="covers/03-shanshi.jpg" alt="你能做的最大善事"></div>
+        <div class="book-cover"><img src="covers/03-shanshi.jpg" alt="你能做的最大善事 - 彼得·辛格"></div>
         <div class="book-title">你能做的最大善事</div>
         <div class="book-author">彼得·辛格</div>
       </div>
       <div class="book-item">
-        <div class="book-cover"><img src="covers/04-superintelligence.jpg" alt="超级智能"></div>
+        <div class="book-cover"><img src="covers/04-superintelligence.jpg" alt="超级智能 - 尼克·博斯特罗姆"></div>
         <div class="book-title">超级智能</div>
         <div class="book-author">尼克·博斯特罗姆</div>
       </div>
       <div class="book-item">
-        <div class="book-cover"><img src="covers/05-fanxi.svg" alt="反熵原则"></div>
+        <div class="book-cover"><img src="covers/05-fanxi.svg" alt="反熵原则 - 马克斯·莫尔"></div>
         <div class="book-title">反熵原则</div>
         <div class="book-author">马克斯·莫尔</div>
       </div>
       <div class="book-item">
-        <div class="book-cover"><img src="covers/06-tescreal.svg" alt="TESCREAL原始论文"></div>
+        <div class="book-cover"><img src="covers/06-tescreal.svg" alt="TESCREAL原始论文 - 格布鲁和托雷斯"></div>
         <div class="book-title">TESCREAL原始论文</div>
         <div class="book-author">格布鲁 & 托雷斯</div>
       </div>
       <div class="book-item">
-        <div class="book-cover"><img src="covers/07-longtermism.svg" alt="长期主义是最危险的信条"></div>
+        <div class="book-cover"><img src="covers/07-longtermism.svg" alt="长期主义是最危险的信条 - 埃米尔·托雷斯"></div>
         <div class="book-title">长期主义是最危险的信条</div>
         <div class="book-author">埃米尔·托雷斯</div>
       </div>
       <div class="book-item">
-        <div class="book-cover"><img src="covers/08-eugenics.svg" alt="TESCREAL与优生学"></div>
+        <div class="book-cover"><img src="covers/08-eugenics.svg" alt="TESCREAL与优生学 - 蒙特利尔伦理研究中心"></div>
         <div class="book-title">TESCREAL与优生学</div>
         <div class="book-author">蒙特利尔伦理研究中心</div>
       </div>
       <div class="book-item">
-        <div class="book-cover"><img src="covers/09-daodejing.jpg" alt="道德经"></div>
+        <div class="book-cover"><img src="covers/09-daodejing.jpg" alt="道德经 - 老子"></div>
         <div class="book-title">道德经</div>
         <div class="book-author">老子</div>
       </div>
       <div class="book-item">
-        <div class="book-cover"><img src="covers/10-zhuangzi.jpg" alt="庄子"></div>
+        <div class="book-cover"><img src="covers/10-zhuangzi.jpg" alt="庄子 - 庄周"></div>
         <div class="book-title">庄子</div>
         <div class="book-author">庄周</div>
       </div>
       <div class="book-item">
-        <div class="book-cover"><img src="covers/11-zhouyi.jpg" alt="周易"></div>
+        <div class="book-cover"><img src="covers/11-zhouyi.jpg" alt="周易 - 廖名春"></div>
         <div class="book-title">周易</div>
         <div class="book-author">廖名春</div>
       </div>
@@ -618,27 +645,27 @@ body::before{
     <div class="book-category-title">商业与投资 · 5本</div>
     <div class="book-grid">
       <div class="book-item">
-        <div class="book-cover"><img src="covers/12-mangge.jpg" alt="穷查理宝典"></div>
+        <div class="book-cover"><img src="covers/12-mangge.jpg" alt="穷查理宝典 - 查理·芒格"></div>
         <div class="book-title">穷查理宝典</div>
         <div class="book-author">查理·芒格</div>
       </div>
       <div class="book-item">
-        <div class="book-cover"><img src="covers/13-invest.jpg" alt="投资最重要的事"></div>
+        <div class="book-cover"><img src="covers/13-invest.jpg" alt="投资最重要的事 - 霍华德·马克斯"></div>
         <div class="book-title">投资最重要的事</div>
         <div class="book-author">霍华德·马克斯</div>
       </div>
       <div class="book-item">
-        <div class="book-cover"><img src="covers/14-antifragile.jpg" alt="反脆弱"></div>
+        <div class="book-cover"><img src="covers/14-antifragile.jpg" alt="反脆弱 - 纳西姆·塔勒布"></div>
         <div class="book-title">反脆弱</div>
         <div class="book-author">纳西姆·塔勒布</div>
       </div>
       <div class="book-item">
-        <div class="book-cover"><img src="covers/15-zero2one.jpg" alt="从0到1"></div>
+        <div class="book-cover"><img src="covers/15-zero2one.jpg" alt="从0到1 - 彼得·蒂尔"></div>
         <div class="book-title">从0到1</div>
         <div class="book-author">彼得·蒂尔</div>
       </div>
       <div class="book-item">
-        <div class="book-cover"><img src="covers/16-principles.jpg" alt="原则"></div>
+        <div class="book-cover"><img src="covers/16-principles.jpg" alt="原则 - 瑞·达利欧"></div>
         <div class="book-title">原则</div>
         <div class="book-author">瑞·达利欧</div>
       </div>
@@ -650,22 +677,22 @@ body::before{
     <div class="book-category-title">AI与技术 · 4本</div>
     <div class="book-grid">
       <div class="book-item">
-        <div class="book-cover"><img src="covers/17-gongzhi.svg" alt="共智时代"></div>
+        <div class="book-cover"><img src="covers/17-gongzhi.svg" alt="共智时代 - 碳硅共生"></div>
         <div class="book-title">共智时代</div>
         <div class="book-author">碳硅共生</div>
       </div>
       <div class="book-item">
-        <div class="book-cover"><img src="covers/18-ai30.jpg" alt="AI 3.0"></div>
+        <div class="book-cover"><img src="covers/18-ai30.jpg" alt="AI 3.0 - 梅拉妮·米歇尔"></div>
         <div class="book-title">AI 3.0</div>
         <div class="book-author">梅拉妮·米歇尔</div>
       </div>
       <div class="book-item">
-        <div class="book-cover"><img src="covers/19-deeplearning.jpg" alt="深度学习"></div>
+        <div class="book-cover"><img src="covers/19-deeplearning.jpg" alt="深度学习 - 古德费洛等"></div>
         <div class="book-title">深度学习</div>
         <div class="book-author">古德费洛等</div>
       </div>
       <div class="book-item">
-        <div class="book-cover"><img src="covers/20-dataintensive.jpg" alt="设计数据密集型应用"></div>
+        <div class="book-cover"><img src="covers/20-dataintensive.jpg" alt="设计数据密集型应用 - 马丁·克莱普曼"></div>
         <div class="book-title">设计数据密集型应用</div>
         <div class="book-author">马丁·克莱普曼</div>
       </div>
@@ -677,22 +704,22 @@ body::before{
     <div class="book-category-title">个人成长与认知 · 4本</div>
     <div class="book-grid">
       <div class="book-item">
-        <div class="book-cover"><img src="covers/21-thinking.jpg" alt="思考，快与慢"></div>
+        <div class="book-cover"><img src="covers/21-thinking.jpg" alt="思考，快与慢 - 丹尼尔·卡尼曼"></div>
         <div class="book-title">思考，快与慢</div>
         <div class="book-author">丹尼尔·卡尼曼</div>
       </div>
       <div class="book-item">
-        <div class="book-cover"><img src="covers/22-atomic.jpg" alt="原子习惯"></div>
+        <div class="book-cover"><img src="covers/22-atomic.jpg" alt="原子习惯 - 詹姆斯·克利尔"></div>
         <div class="book-title">原子习惯</div>
         <div class="book-author">詹姆斯·克利尔</div>
       </div>
       <div class="book-item">
-        <div class="book-cover"><img src="covers/23-flow.jpg" alt="心流"></div>
+        <div class="book-cover"><img src="covers/23-flow.jpg" alt="心流 - 契克森米哈赖"></div>
         <div class="book-title">心流</div>
         <div class="book-author">契克森米哈赖</div>
       </div>
       <div class="book-item">
-        <div class="book-cover"><img src="covers/24-meaning.jpg" alt="活出生命的意义"></div>
+        <div class="book-cover"><img src="covers/24-meaning.jpg" alt="活出生命的意义 - 维克多·弗兰克尔"></div>
         <div class="book-title">活出生命的意义</div>
         <div class="book-author">维克多·弗兰克尔</div>
       </div>
@@ -725,6 +752,9 @@ body::before{
       <h4>技术乐观</h4>
       <p>库兹韦尔说2029年AGI到来、2045年奇点到来、人类将实现长寿逃逸速度。加速回报定律有几十年的数据支撑，逻辑自洽。</p>
     </div>
+    <div class="tension-divider">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+    </div>
     <div class="tension-side">
       <h4>技术审慎</h4>
       <p>博斯特罗姆说超级智能可能是人类的最后一个发明。托雷斯说这些叙事背后有优生学的幽灵。技术乌托邦叙事从来不是价值中立的。</p>
@@ -737,6 +767,9 @@ body::before{
       <h4>当下关怀</h4>
       <p>辛格说每5000美元就能挽救一条疟疾患者的生命。托雷斯说长期主义在系统性地忽视当下苦难。每一个抽象的"最大化效用"背后，都有一个具体的、正在受苦的人。</p>
     </div>
+    <div class="tension-divider">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+    </div>
     <div class="tension-side">
       <h4>未来关怀</h4>
       <p>麦斯科维尔说防范存在性风险可能产生更大的道德价值。未来万亿人口的福祉在数学上确实权重更大。但老子提醒：最重要的东西往往是不可量化的。</p>
@@ -748,6 +781,9 @@ body::before{
     <div class="tension-side">
       <h4>理性决策</h4>
       <p>卡尼曼证明了系统1（直觉）充满偏差，系统2（理性）才是正确的决策模式。芒格说要建立多元思维模型，用检查清单对抗认知偏差。</p>
+    </div>
+    <div class="tension-divider">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
     </div>
     <div class="tension-side">
       <h4>直觉智慧</h4>
@@ -769,37 +805,37 @@ body::before{
 
   <div class="fw-grid">
     <div class="fw-card reveal">
-      <div class="fw-icon">⚡</div>
+      <svg class="fw-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
       <div class="fw-layer">底层操作系统</div>
       <h4>反熵</h4>
       <p>不进则退。每天的系统要确保正向复利。学习、运动、创造——三件事每天至少做一件。</p>
     </div>
     <div class="fw-card reveal">
-      <div class="fw-icon">🧩</div>
+      <svg class="fw-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="9" cy="9" r="1.5"/><circle cx="15" cy="9" r="1.5"/><circle cx="9" cy="15" r="1.5"/><circle cx="15" cy="15" r="1.5"/></svg>
       <div class="fw-layer">认知层</div>
       <h4>多元思维 + 偏差审计</h4>
       <p>用芒格的格栅理论避免单一学科的盲区。用卡尼曼的系统1/系统2框架在重大决策前强制启动慢思考。</p>
     </div>
     <div class="fw-card reveal">
-      <div class="fw-icon">🎯</div>
+      <svg class="fw-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
       <div class="fw-layer">行动层</div>
       <h4>无为 + 杠铃策略</h4>
       <p>克制"做点什么"的冲动。在确定性领域建立系统自动运转。在不确定性领域用杠铃策略——极度保守 + 极度冒险。</p>
     </div>
     <div class="fw-card reveal">
-      <div class="fw-icon">🤝</div>
+      <svg class="fw-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
       <div class="fw-layer">关系层</div>
       <h4>碳硅共生</h4>
       <p>把AI当成协作者，不是工具，也不是威胁。培养驾驭工程能力——让AI做数据处理，自己专注提问、判断、连接。</p>
     </div>
     <div class="fw-card reveal">
-      <div class="fw-icon">🧘</div>
+      <svg class="fw-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
       <div class="fw-layer">意义层</div>
       <h4>心流 + 意义疗法</h4>
       <p>在有意义的挑战中创造心流，就是最深的幸福。不要等到"退休了"才开始做重要的事。</p>
     </div>
     <div class="fw-card reveal">
-      <div class="fw-icon">🌍</div>
+      <svg class="fw-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
       <div class="fw-layer">伦理层</div>
       <h4>当下关怀</h4>
       <p>关心未来，但不以牺牲当下为代价。道德不是数学题。每一个抽象的"最大化效用"背后，都有一个具体的、正在受苦的人。</p>
@@ -826,7 +862,9 @@ body::before{
 
 <!-- ========== FOOTER ========== -->
 <footer class="footer">
-  <p>2026 · 在奇点与道之间寻找锚点 · Built with ❤️</p>
+  <p>2026 · 在奇点与道之间寻找锚点 · Built with
+    <svg class="footer-heart" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+  </p>
 </footer>
 
 <script>
@@ -838,8 +876,11 @@ const observer = new IntersectionObserver((entries) => {
     }
   });
 }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
-
 document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// Reduced motion
+if (matchMedia('(prefers-reduced-motion: reduce)').matches)
+  document.querySelectorAll('.reveal').forEach(el => el.classList.add('visible'));
 </script>
 </body>
 </html>
